@@ -22,12 +22,15 @@ public class Root {
         Map<String, Long> minTravelTime = new HashMap<>();
 
         for (Ticket ticket : this.getTickets()) {
-            LocalDateTime dateArrivalTime = LocalDateTime.parse(ticket.getArrivalDate() + " " + ticket.getArrivalTime() + ":00", formatter);
-            LocalDateTime dateDepartureTime = LocalDateTime.parse(ticket.getDepartureDate() + " " + ticket.getDepartureTime() + ":00", formatter);
-            long timeDiff = dateDepartureTime.until(dateArrivalTime, ChronoUnit.MINUTES);
-            if (!minTravelTime.containsKey(ticket.getCarrier()) || timeDiff < minTravelTime.get(ticket.getCarrier())) {
-                minTravelTime.put(ticket.getCarrier(), timeDiff);
+            if(ticket.getOriginName().equals("Владивосток") && ticket.getDestinationName().equals("Тель-Авив")){
+                LocalDateTime dateArrivalTime = LocalDateTime.parse(ticket.getArrivalDate() + " " + ticket.getArrivalTime() + ":00", formatter);
+                LocalDateTime dateDepartureTime = LocalDateTime.parse(ticket.getDepartureDate() + " " + ticket.getDepartureTime() + ":00", formatter);
+                long timeDiff = dateDepartureTime.until(dateArrivalTime, ChronoUnit.MINUTES);
+                if (!minTravelTime.containsKey(ticket.getCarrier()) || timeDiff < minTravelTime.get(ticket.getCarrier())) {
+                    minTravelTime.put(ticket.getCarrier(), timeDiff);
+                }
             }
+
         }
         for (Map.Entry<String, Long> entry : minTravelTime.entrySet()) {
             System.out.println("Минимальное время полета компании " + entry.getKey() + " " + Root.convertMinutes(entry.getValue()));

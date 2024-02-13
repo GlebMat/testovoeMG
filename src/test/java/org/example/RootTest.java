@@ -19,6 +19,8 @@ public class RootTest {
         ticket1.setDepartureDate("12.05.18");
         ticket1.setDepartureTime("16:20");
         ticket1.setCarrier("TK");
+        ticket1.setOriginName("Владивосток");
+        ticket1.setDestinationName("Тель-Авив");
         tickets.add(ticket1);
 
         Ticket ticket2 = new Ticket();
@@ -26,7 +28,9 @@ public class RootTest {
         ticket2.setArrivalTime("23:50");
         ticket2.setDepartureDate("12.05.18");
         ticket2.setDepartureTime("17:20");
-        ticket2.setCarrier("S7");
+        ticket2.setCarrier("SU");
+        ticket2.setOriginName("Владивосток");
+        ticket2.setDestinationName("Тель-Авив");
         tickets.add(ticket2);
 
         root.setTickets(tickets);
